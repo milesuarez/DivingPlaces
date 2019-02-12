@@ -27,5 +27,20 @@
   },
   "devDependencies": {
     "nodemon": "^1.12.1"
-  }
+  },
+  "description": "Lugares para practicar sumarinismo",
+  "main": "app.js",
+  "bin": {
+    "divingplaces": "seeds.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/proyecto2-mile-carlos/DivingPlaces.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/proyecto2-mile-carlos/DivingPlaces/issues"
+  },
+  "homepage": "https://github.com/proyecto2-mile-carlos/DivingPlaces#readme"
 }

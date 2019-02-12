@@ -8,12 +8,14 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
+const handlebars = require("handlebars")
+const swag      = require("handlebars");
 
 const session    = require("express-session");
 const MongoStore = require('connect-mongo')(session);
 const flash      = require("connect-flash");
     
-
+swag.registerHelper(handlebars);
 mongoose
   .connect('mongodb://localhost/divingplaces', {useNewUrlParser: true})
   .then(x => {
@@ -61,7 +63,7 @@ hbs.registerHelper('ifUndefined', (value, options) => {
   
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'DivingPlaces';
 
 
 // Enable authentication using session + passport
