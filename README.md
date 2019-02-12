@@ -1,2 +1,2 @@
 # DivingPlaces
-Lugares para practicar sumarinismo
+Lugares para practicar submarinismo
