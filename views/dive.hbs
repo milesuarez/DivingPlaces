@@ -1,0 +1,62 @@
+<style>
+       #map {
+        height: 500px;
+        width: 1000px;
+       }
+    </style>
+<nav>
+    <a href="/">Home</a>
+    <a href="/auth//logout">Logout</a>
+</nav>
+
+    <div>
+        <h3>{{dive.namePlace}}</h3>
+        <p>{{dive.description}}</p>
+        <img src="{{dive.picPath}}" alt="image">
+        <p>Depth: {{dive.depthMeters}}</p>
+        <p>Date: {{dive.dateDive}}</p>
+        <p>Time: {{dive.timeDiveMin}}</p>
+        <p>Valuations: {{dive.valuations}}</p>
+        <p>Longitude: {{dive.lng}}</p>
+        <p>Latitude: {{dive.lat}}</p>
+
+    </div>
+<br>
+    <a href="/myDives">Back
+
+<div id="map"></div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZYDrROjSu7p0Gd5yqk8C78FpZ3glFlN8"`></script>
+  
+  </body>
+
+<script>
+ 
+
+  function startMap(lat,lng){
+     
+    const mapcenter = {
+  	  lat: lat,
+  	  lng: lng
+    };
+    const map = new google.maps.Map(
+      document.getElementById('map'),
+    {
+      zoom: 11,
+      center: mapcenter
+    }
+    );
+}
+
+const myMarker = new google.maps.Marker({
+    position:{
+            lat: {{dive.lat}},
+            lng: {{dive.lng}},
+    },
+    map: map,
+
+})
+
+startMap({{dive.lat}},{{dive.lng}});
+</script>
+
