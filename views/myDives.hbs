@@ -7,6 +7,16 @@
 
 Aqui va el listado de todos las inmersiones agregadas por este usuario
 
-    <a href="/addPlace">Add Place</a>
+{{#each dive}}
+    <div>
+        <p>{{this.namePlace}}</p>
+        <p>{{this.description}}</p>
+        <img src="{{this.picPath}}" alt="image">
+        
+        <a href="dive/{{this._id}}">See more</a>
+    </div>
+{{/each}} 
+<br>
+    <a href="./addDive">Add Place</a>
   </p>
 </form>
