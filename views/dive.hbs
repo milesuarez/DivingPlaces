@@ -7,8 +7,9 @@
 <nav>
     <a href="/">Home</a>
     <a href="/auth//logout">Logout</a>
+    <a href="/myDives">Back</a>
 </nav>
-
+    <h1>My Dive</h1>
     <div>
         <h3>{{dive.namePlace}}</h3>
         <p>{{dive.description}}</p>
@@ -22,7 +23,7 @@
 
     </div>
 <br>
-    <a href="/myDives">Back
+    
 
 <div id="map"></div>
 
@@ -46,17 +47,20 @@
       center: mapcenter
     }
     );
+    const myMarker = new google.maps.Marker({
+    position: mapcenter,
+    map: map,
+    
+    })
 }
 
-const myMarker = new google.maps.Marker({
-    position:{
-            lat: {{dive.lat}},
-            lng: {{dive.lng}},
-    },
-    map: map,
 
-})
 
 startMap({{dive.lat}},{{dive.lng}});
+
+
+
+
+
 </script>
 
