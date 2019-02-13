@@ -1,6 +1,7 @@
 <nav>
     <a href="/auth/login">Login</a>
     <a href="/auth/signup">Signup</a>
+    <a href="/myDives">MyDives</a>
     
 </nav>
 
@@ -8,3 +9,11 @@
 <p>Welcome to {{title}}</p>
 
 <p>Esta es la página de entrada general, podríamos colocar algunos pocos lugares con su foto</p>
+
+{{#each dive}}
+    <div>
+        <p>{{this.namePlace}}</p>
+        <a href="dive/{{this._id}}"><img src="{{this.picPath}}" alt="image"></a>
+        
+    </div>
+{{/each}} 
