@@ -10,7 +10,7 @@ const keyG = process.env.GOOGLEKEY;
 
 
 /* GET home page */
-router.get('/', (req, res, next) => {console.log(req.session)
+router.get('/', (req, res, next) => {
   Dive.find()
     .then(dive =>{ res.render('index', { dive, user: req.session.passport.user,ruta:true}) })
     .catch(error => { console.log(error) }) 
