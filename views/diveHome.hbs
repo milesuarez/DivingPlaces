@@ -1,28 +1,28 @@
 
 <nav>
-    <a href="/">Home</a>
     <a href="/auth//logout">Logout</a>
-    <a href="/myDives">Back</a>
-    <a href='/updateDive/{{dive.id}}'>Update Dive</a> 
+    <a href="/myDives">MyDives</a>
+    <a href="/">Back</a>
 </nav>
 <hr>
-    <h2>My Dive</h2>
-    <h3>{{dive.namePlace}}</h3>
+    <h2>{{dive.namePlace}}</h2>
     <div class="flex-container">
-        <div><img src="{{dive.picPath}}" alt="image"/></div>
+        <div><img src="{{dive.picPath}}" alt="image"></div>
         <div>
-            <p>Description: {{dive.description}}</p>
-            <p>Depth: {{dive.depthMeters}}</p>
-            <p>Date: {{dive.dateDive}}</p>
-            <p>Time: {{dive.timeDiveMin}}</p>
-            <p>Valuations: {{dive.valuations}}</p>
-            <p>Longitude: {{dive.lng}}</p>
-            <p>Latitude: {{dive.lat}}</p>
+          <p>{{dive.description}}</p>
+          <p>Depth: {{dive.depthMeters}}</p>
+          <p>Date: {{dive.dateDive}}</p>
+          <p>Time: {{dive.timeDiveMin}}</p>
+          <p>Valuations: {{dive.valuations}}</p>
+          <p>Longitude: {{dive.lng}}</p>
+          <p>Latitude: {{dive.lat}}</p>
         </div>
-    
-
         <div id="map"></div>
     </div>
+    
+
+
+
 <script src='https://maps.googleapis.com/maps/api/js?key='{{keyG}}></script>
   
 <script>
@@ -35,7 +35,7 @@
     const map = new google.maps.Map(
       document.getElementById('map'),
     {
-      zoom: 30,
+      zoom: 7,
       center: mapcenter
     }
     );
