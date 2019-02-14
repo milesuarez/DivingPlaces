@@ -16,7 +16,7 @@ const flash      = require("connect-flash");
     
 //swag.registerHelper(handlebars);
 mongoose
-  .connect('mongodb://localhost/divingplaces', {useNewUrlParser: true})
+  .connect(process.env.DB_URL, {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
