@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const router  = express.Router();
 const Dive = require("../models/Dive");
+const Comment = require("../models/Comment");
 const cloudinary = require("../options/cloudinary");
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 const keyG = process.env.GOOGLEKEY;
@@ -11,14 +12,14 @@ const keyG = process.env.GOOGLEKEY;
 /* GET home page */
 router.get('/', (req, res, next) => {console.log(req.session)
   Dive.find()
-    .then(dive =>{ res.render('index', { dive }) })
+    .then(dive =>{ res.render('index', { dive, user: req.session.passport.user,ruta:true}) })
     .catch(error => { console.log(error) }) 
   
 });
 
 router.get('/myDives', ensureLoggedIn("/"),(req, res, next) => {
   Dive.find({creatorId: req.session.passport.user })
-    .then(dive =>{ res.render('myDives', { dive }) })
+    .then(dive =>{ res.render('myDives', { dive, user: req.session.passport.user, ruta:false }) })
     .catch(error => { console.log(error) }) 
 });
 
@@ -32,13 +33,43 @@ router.get('/dive/:id', ensureLoggedIn("/"),(req, res, next) => {
 
 router.get('/diveHome/:id', ensureLoggedIn("/"),(req, res, next) => {
   Dive.findById(req.params.id)
-    .then(dive =>{ res.render('diveHome', { dive, keyG }) })
+    .then(dive =>{ 
+      Comment.find({diveId: dive._id})
+      .populate('creatorId')
+      .then(comment => {
+        res.render('diveHome', {comment, dive, user: req.session.passport.user, keyG , ruta:true }) })
+        
+      })
     .catch(error => { console.log(error) }) 
 });
+
+router.get('/addComment/:id', ensureLoggedIn("/"),(req, res, next) => {
+  Dive.findById(req.params.id)    
+    .then(dive =>{  res.render('addComment', { dive }) })
+    .catch(error => { console.log(error) }) 
+
+});
+
+router.post('/addComment',(req, res, next) => {
+  console.log(req.body,req.session.passport.user)
+  const newComment = new Comment({
+      creatorId  :  req.session.passport.user,
+      diveId     :  req.body.id,
+      valuation  :  req.body.valuation,
+      description:  req.body.description,
+      
+  });
+  newComment
+    .save()
+    .then(() => res.redirect("/"))
+    .catch(err => console.log("An error ocurred sabing a post"));
+});
+
 
 router.get('/addDive', ensureLoggedIn("/"),(req, res, next) => {
   res.render('addDive');
 });
+
 
 router.post('/addDive',cloudinary.single("photo"),(req, res, next) => {
   
@@ -47,6 +78,7 @@ router.post('/addDive',cloudinary.single("photo"),(req, res, next) => {
       namePlace  :  req.body.namePlace,
       description:  req.body.description,
       depthMeters:  req.body.depthMeters,
+      temperature:  req.body.temperature,
       dateDive   :  req.body.dateDive,
       timeDiveMin:  req.body.timeDiveMin,
       valuations :  req.body.valuations,
@@ -76,6 +108,7 @@ router.post('/updateDive',(req, res, next) => {
     namePlace  :  req.body.namePlace,
     description:  req.body.description,
     depthMeters:  req.body.depthMeters,
+    temperature:  req.body.temperature,
     dateDive   :  req.body.dateDive,
     timeDiveMin:  req.body.timeDiveMin,
     valuations :  req.body.valuations,
