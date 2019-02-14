@@ -1,13 +1,18 @@
 <nav>
     <a href="/auth/login">Login</a>
     <a href="/auth/signup">Signup</a>
+    <a href="/myDives">MyDives</a>
 </nav>
 <hr>
 <h2>Welcome to {{title}}</h2>
+<h5>This site has been created with the purpose of registering your dives with all the information of the place and its characteristics. In addition to being able to consult the experience of other collaborators and qualify according to your experiences</h5>
 <div class="flex-container">
     {{#each dive}}
-        <div><h3>{{this.namePlace}}</h3>
-        <a href="diveHome/{{this._id}}"><img src="{{this.picPath}}" alt="image"></a></div>
+        <div>
+            <h3>{{this.namePlace}}</h3>
+            <a href="diveHome/{{this._id}}"><img src="{{this.picPath}}" alt="image"></a>
+        </div>
         
-{{/each}} 
+    {{/each}} 
 </div>
+<h5>To see the detail you must be registered, using the signup / login options</h5>
