@@ -1,12 +1,15 @@
+require('dotenv').config();
+
 const express = require('express');
 const router  = express.Router();
 const Dive = require("../models/Dive");
 const cloudinary = require("../options/cloudinary");
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
+const keyG = process.env.GOOGLEKEY;
 
 
 /* GET home page */
-router.get('/', (req, res, next) => {
+router.get('/', (req, res, next) => {console.log(req.session)
   Dive.find()
     .then(dive =>{ res.render('index', { dive }) })
     .catch(error => { console.log(error) }) 
@@ -21,7 +24,15 @@ router.get('/myDives', ensureLoggedIn("/"),(req, res, next) => {
 
 router.get('/dive/:id', ensureLoggedIn("/"),(req, res, next) => {
   Dive.findById(req.params.id)
-    .then(dive =>{ res.render('dive', { dive }) })
+    .then(dive =>{
+       res.render('dive', { dive, keyG }) 
+      })
+    .catch(error => { console.log(error) }) 
+});
+
+router.get('/diveHome/:id', ensureLoggedIn("/"),(req, res, next) => {
+  Dive.findById(req.params.id)
+    .then(dive =>{ res.render('diveHome', { dive, keyG }) })
     .catch(error => { console.log(error) }) 
 });
 
@@ -49,6 +60,33 @@ router.post('/addDive',cloudinary.single("photo"),(req, res, next) => {
     .save()
     .then(() => res.redirect("/myDives"))
     .catch(err => console.log("An error ocurred sabing a post"));
+});
+
+router.get('/updateDive/:id', ensureLoggedIn("/"),(req, res, next) => {
+  Dive.findById(req.params.id)
+    .then(dive =>{  res.render('updateDive', { dive }) })
+    .catch(error => { console.log(error) }) 
+  
+});
+
+router.post('/updateDive',(req, res, next) => {
+ 
+  const diveId = req.body.id;
+  const diveUpdate = { 
+    namePlace  :  req.body.namePlace,
+    description:  req.body.description,
+    depthMeters:  req.body.depthMeters,
+    dateDive   :  req.body.dateDive,
+    timeDiveMin:  req.body.timeDiveMin,
+    valuations :  req.body.valuations,
+    lng        :  +req.body.lng,
+    lat        :  +req.body.lat,
+  }
+
+  Dive.findOneAndUpdate({_id: diveId}, diveUpdate, {new: true})
+    .then(() => res.redirect('/myDives'))
+    .catch(error => { console.log(error) }) 
+  
 });
 
 

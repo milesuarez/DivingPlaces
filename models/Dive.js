@@ -7,7 +7,7 @@ const diveSchema = new Schema({
   namePlace:    String,
   description:  String,
   depthMeters:  Number,
-  dateDive:     Date,
+  dateDive:     String,
   timeDiveMin:  Number,
   valuations:   {type:Number, enum:[1,2,3,4,5], default:3},
   lng:          Number,

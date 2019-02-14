@@ -1,0 +1,53 @@
+<nav>
+    <a href="/myDives">Back</a>
+    
+</nav>
+<hr>
+<h2>Update diving place</h2>
+
+
+<form action="/updateDive" method="POST" id="form">
+  <input type="hidden" id="id" name="id" value={{dive.id}}>
+  <label for="namePlace">Place Name </label>
+  <input id="namePlace" type="text" value="{{dive.namePlace}}" name="namePlace">
+
+  <br><br>
+
+  <label for="description">Description</label>
+  <input id="description" type="text" value="{{dive.description}}" name="description">
+  <br>
+
+  <label for="depthMeters">Depth in Meters</label>
+  <input id="depthMeters" type="number" value={{dive.depthMeters}} name="depthMeters" >
+  
+  <label for="dateDive">Date</label>
+  <input id="dateDive" type="date" value={{dive.dateDive}} name="dateDive" >
+
+  <br><br>
+
+  <label for="timeDiveMin">Time Dive in Minutes</label>
+  <input id="timeDiveMin" type="number" value={{dive.timeDiveMin}} name="timeDiveMin">
+  <br>
+
+  <label for="valuations">Valuations (from 1 to 5)</label>
+  <input id="valuations" type="number" value={{dive.valuations}} name="valuations">
+  
+  <label for="lng">Longitude</label>
+  <input id="lng" type="text" name="lng" value={{dive.lng}} >
+  
+  <label for="lat">Latitude</label>
+  <input id="lat" type="text" name="lat" value={{dive.lat}} >
+  
+  
+  <br>
+  {{#if message }}
+    <div class="error-message">{{ message }}</div>
+  {{/if}}
+
+  <br><br>
+
+  <button>Update Place</button>
+
+</form>
+
+
