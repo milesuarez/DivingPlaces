@@ -10,16 +10,16 @@ const keyG = process.env.GOOGLEKEY;
 
 
 /* GET home page */
-router.get('/', (req, res, next) => {console.log(req.session)
+router.get('/', (req, res, next) => {
   Dive.find()
-    .then(dive =>{ res.render('index', { dive, user: req.session.passport.user,ruta:true}) })
+    .then(dive =>{ res.render('index', { dive, user: req.user,ruta:true}) })
     .catch(error => { console.log(error) }) 
   
 });
 
 router.get('/myDives', ensureLoggedIn("/"),(req, res, next) => {
   Dive.find({creatorId: req.session.passport.user })
-    .then(dive =>{ res.render('myDives', { dive, user: req.session.passport.user, ruta:false }) })
+    .then(dive =>{ res.render('myDives', { dive, user: req.user, ruta:false }) })
     .catch(error => { console.log(error) }) 
 });
 
@@ -37,7 +37,7 @@ router.get('/diveHome/:id', ensureLoggedIn("/"),(req, res, next) => {
       Comment.find({diveId: dive._id})
       .populate('creatorId')
       .then(comment => {
-        res.render('diveHome', {comment, dive, user: req.session.passport.user, keyG , ruta:true }) })
+        res.render('diveHome', {comment, dive, user: req.user, keyG , ruta:true }) })
         
       })
     .catch(error => { console.log(error) }) 
@@ -51,7 +51,7 @@ router.get('/addComment/:id', ensureLoggedIn("/"),(req, res, next) => {
 });
 
 router.post('/addComment',(req, res, next) => {
-  console.log(req.body,req.session.passport.user)
+  
   const newComment = new Comment({
       creatorId  :  req.session.passport.user,
       diveId     :  req.body.id,
