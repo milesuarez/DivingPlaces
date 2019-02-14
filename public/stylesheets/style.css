@@ -1,109 +1,89 @@
 body {
-  
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
-
 
 nav {
   text-decoration: none;
   text-align: right;
   font-size: 20px;
-  margin-right: 30px;
-  
-}
+  margin-right: 30px; }
 
 a {
-  color: #00B7FF; 
+  color: #00B7FF;
   text-decoration: none;
-  padding-right: 30px;
-}
+  padding-right: 30px; }
 
 nav :hover {
-  font-size: 25px;
-}
-  
+  font-size: 25px; }
+
 header {
-  display: inline;
-}
+  display: inline; }
 
 .flex-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: 30px;
-}
+  margin: 30px; }
 
-.flex-container img{
+.flex-container img {
   width: 320px;
   height: 280px;
-  float: left;
-}
+  float: left; }
 
 h6 {
-  color: rgb(12, 119, 87);
+  color: #0c7757;
   text-align: left;
   font-size: 15px;
   padding: 0px;
-  margin: 10px;
-}
+  margin: 10px; }
 
 h1 {
-  color: rgb(12, 119, 87);
+  color: #0c7757;
   text-align: center;
   font-size: 35px;
-  font-style: italic;
-}
+  font-style: italic; }
 
 h2 {
   color: #00B7FF;
   text-align: center;
-  font-size: 30px;
-}
+  font-size: 30px; }
 
 h3 {
-  color: rgb(12, 119, 87);
+  color: #0c7757;
   text-align: center;
-  font-size: 25px;
-  
-}
+  font-size: 25px; }
 
 h5 {
-  color: rgb(6, 99, 71);
+  color: #066347;
   text-align: center;
   font-size: 20px;
   padding-left: 20px;
   padding-right: 20px;
-  font-weight: 300;
-}
+  font-weight: 300; }
 
 p {
-  color: rgb(2, 0, 7);
+  color: #020007;
   text-align: left;
   font-size: 15px;
   padding-left: 10px;
-  padding-right: 10px;
-
-}
+  padding-right: 10px; }
 
 header img {
   width: 90px;
   height: 90px;
-  float: left;
-}
-
-
+  float: left; }
 
 #map {
   height: 300px;
-  width: 550px; 
-  align-self: auto;
-}
+  width: 550px;
+  display: inline-block;
+  margin: 0 auto; }
 
 #form {
   margin: 30px auto;
   width: 380px; }
 
 #form label {
-  color: rgb(15, 23, 124);
+  color: #0f177c;
   display: inline-block;
   margin-bottom: 10px;
   text-align: center;
@@ -118,8 +98,8 @@ header img {
   width: 100%; }
 
 #form button {
-  background: rgb(12, 119, 87);
-  border: 1px solid rgb(12, 119, 87);
+  background: #0c7757;
+  border: 1px solid #0c7757;
   border-radius: 10px;
   color: #fff;
   cursor: pointer;
@@ -132,14 +112,14 @@ header img {
   width: 100%; }
 
 #form button:hover {
-  background: rgb(9, 87, 29);
+  background: #09571d;
   transition: .3s ease background; }
 
-  button {
-    box-sizing: border-box;
-    font-size: 14px;
-    outline: 0;
-    padding: 4px;
-    width: 100%; }
+button {
+  box-sizing: border-box;
+  font-size: 14px;
+  outline: 0;
+  padding: 4px;
+  width: 100%; }
 
 /*# sourceMappingURL=style.css.map */

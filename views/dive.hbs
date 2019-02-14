@@ -1,11 +1,8 @@
 
-<nav>
-    <a href="/">Home</a>
-    <a href="/auth//logout">Logout</a>
-    <a href="/myDives">Back</a>
-    <a href='/updateDive/{{dive.id}}'>Update Dive</a> 
-</nav>
+{{> navigation}}
 <hr>
+<a href="/myDives">Back</a>
+    <a href='/updateDive/{{dive.id}}'>Update Dive</a> 
     <h2>My Dive</h2>
     <h3>{{dive.namePlace}}</h3>
     <div class="flex-container">
@@ -19,6 +16,13 @@
           <h6>Valuations: {{dive.valuations}}</h6>
           <h6>Longitude: {{dive.lng}}</h6>
           <h6>Latitude: {{dive.lat}}</h6>
+          {{#each dive.comment}}
+            <div>
+                <h6>{{this.valuation}}</h6>
+                <h6>{{this.description}}</h6>
+            </div>
+        
+          {{/each}} 
         </div>
     
 
@@ -36,7 +40,7 @@
     const map = new google.maps.Map(
       document.getElementById('map'),
     {
-      zoom: 30,
+      zoom: 6,
       center: mapcenter
     }
     );

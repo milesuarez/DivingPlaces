@@ -1,13 +1,15 @@
 
-<nav>
-    <a href="/auth//logout">Logout</a>
-    <a href="/myDives">MyDives</a>
-    <a href="/">Back</a>
-</nav>
+{{> navigation}}
 <hr>
+
+<a href="/">Back</a>
+<a href='/addComment/{{dive.id}}'>Add Comment</a>
+    
     <h2>{{dive.namePlace}}</h2>
     <div class="flex-container">
-        <div><img src="{{dive.picPath}}" alt="image"></div>
+        <div>
+            <img src="{{dive.picPath}}" alt="image">
+        </div>
         <div>
           <h6>{{dive.description}}</h6>
           <h6>Depth: {{dive.depthMeters}} meters</h6>
@@ -17,10 +19,19 @@
           <h6>Valuations: {{dive.valuations}}</h6>
           <h6>Longitude: {{dive.lng}}</h6>
           <h6>Latitude: {{dive.lat}}</h6>
+          
         </div>
-        <div id="map"></div>
+        <div>
+            <h5>Comments</h5>
+            {{#each comment}}
+                <h6>User: {{this.creatorId.username}}</h6>
+                <h6>Valuation: {{this.valuation}}</h6>
+                <h6>Description: {{this.description}}</h6>
+            {{/each}}
+        </div>
     </div>
-    
+        
+    <div id="map"></div>
 
 
 
@@ -49,4 +60,3 @@
 }
 startMap({{dive.lat}},{{dive.lng}});
 </script>
-
