@@ -12,14 +12,14 @@ const keyG = process.env.GOOGLEKEY;
 /* GET home page */
 router.get('/', (req, res, next) => {
   Dive.find()
-    .then(dive =>{ res.render('index', { dive, ruta:true}) })
+    .then(dive =>{ res.render('index', { dive, user: req.user,ruta:true}) })
     .catch(error => { console.log(error) }) 
   
 });
 
 router.get('/myDives', ensureLoggedIn("/"),(req, res, next) => {
   Dive.find({creatorId: req.session.passport.user })
-    .then(dive =>{ res.render('myDives', { dive,  ruta:false }) })
+    .then(dive =>{ res.render('myDives', { dive, user: req.user, ruta:false }) })
     .catch(error => { console.log(error) }) 
 });
 
@@ -37,7 +37,7 @@ router.get('/diveHome/:id', ensureLoggedIn("/"),(req, res, next) => {
       Comment.find({diveId: dive._id})
       .populate('creatorId')
       .then(comment => {
-        res.render('diveHome', {comment, dive, keyG , ruta:true }) })
+        res.render('diveHome', {comment, dive, user: req.user, keyG , ruta:true }) })
         
       })
     .catch(error => { console.log(error) }) 
