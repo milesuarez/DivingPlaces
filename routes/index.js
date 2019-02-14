@@ -51,7 +51,7 @@ router.get('/addComment/:id', ensureLoggedIn("/"),(req, res, next) => {
 });
 
 router.post('/addComment',(req, res, next) => {
-  console.log(req.body,req.session.passport.user)
+  
   const newComment = new Comment({
       creatorId  :  req.session.passport.user,
       diveId     :  req.body.id,
