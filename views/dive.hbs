@@ -1,14 +1,15 @@
 
 {{> navigation}}
 <hr>
-<a href="/myDives">Back</a>
+   
+    <a href='/myDives'>Back</a>
     <a href='/updateDive/{{dive.id}}'>Update Dive</a> 
     <h2>My Dive</h2>
     <h3>{{dive.namePlace}}</h3>
     <div class="flex-container">
-        <div><img src="{{dive.picPath}}" alt="image"/></div>
+        
         <div>
-            <h6>{{dive.description}}</h6>
+          <h6>Description: {{dive.description}}</h6>
           <h6>Depth: {{dive.depthMeters}} meters</h6>
           <h6>Temperature: {{dive.temperature}} Celsius</h6>
           <h6>Date: {{dive.dateDive}}</h6>
@@ -16,16 +17,22 @@
           <h6>Valuations: {{dive.valuations}}</h6>
           <h6>Longitude: {{dive.lng}}</h6>
           <h6>Latitude: {{dive.lat}}</h6>
-          {{#each dive.comment}}
-            <div>
-                <h6>{{this.valuation}}</h6>
-                <h6>{{this.description}}</h6>
-            </div>
-        
-          {{/each}} 
+          
         </div>
-    
 
+        <div>
+            <img src="{{dive.picPath}}" alt="image">
+        </div>
+        <div>
+            {{#if comment}} <h6>Comments</h6> {{/if}}
+            {{#each comment}}
+                <h6>User: {{this.creatorId.username}}</h6>
+                <h6>Valuation: {{this.valuation}}</h6>
+                <h6>Description: {{this.description}}</h6>
+            {{/each}}
+        </div>
+    </div>
+    <div class="mapCont">
         <div id="map"></div>
     </div>
 <script src='https://maps.googleapis.com/maps/api/js?key='{{keyG}}></script>

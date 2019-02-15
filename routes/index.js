@@ -25,8 +25,11 @@ router.get('/myDives', ensureLoggedIn("/"),(req, res, next) => {
 
 router.get('/dive/:id', ensureLoggedIn("/"),(req, res, next) => {
   Dive.findById(req.params.id)
-    .then(dive =>{
-       res.render('dive', { dive, keyG }) 
+  .then(dive =>{ 
+    Comment.find({diveId: dive._id})
+    .populate('creatorId')
+    .then(comment => {
+      res.render('dive', {comment, dive, user: req.user, keyG , ruta:true }) })
       })
     .catch(error => { console.log(error) }) 
 });
