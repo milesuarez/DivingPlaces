@@ -29,7 +29,7 @@ router.get('/dive/:id', ensureLoggedIn("/"),(req, res, next) => {
     Comment.find({diveId: dive._id})
     .populate('creatorId')
     .then(comment => {
-      res.render('diveHome', {comment, dive, user: req.user, keyG , ruta:true }) })
+      res.render('dive', {comment, dive, user: req.user, keyG , ruta:true }) })
       })
     .catch(error => { console.log(error) }) 
 });
